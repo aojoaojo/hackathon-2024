@@ -22,3 +22,24 @@
   align-items: center;
   display: flex;
 }
+
+.popup {
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 0.1rem solid white;
+  z-index: 999;
+  background: green;
+}
+
+.popup p {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+  font-size: 18px;
+}

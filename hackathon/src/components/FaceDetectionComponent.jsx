@@ -9,6 +9,7 @@ export const FaceDetectionComponent = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [detector, setDetector] = useState(null);
+  const [showPopup, setShowPopup] = useState(false); // Estado para controlar a exibição do "pop-up"
 
   useEffect(() => {
     const onResults = (results) => {
@@ -20,21 +21,19 @@ export const FaceDetectionComponent = () => {
       if (results.detections && results.detections.length > 0) {
         results.detections.forEach((detection) => {
           // Desenhar a detecção no canvas
-          drawingUtils.drawRectangle(
-            canvasCtx,
-            detection.boundingBox,
-            { color: 'blue', lineWidth: 4 }
-          );
-          // Podemos adicionar a confiança como texto diretamente no canvas
-          canvasCtx.font = '16px Arial';
-          canvasCtx.fillStyle = 'blue';
-          canvasCtx.fillText(
-            `${Math.floor(detection.score * 100)}%`,
-            detection.boundingBox.xCenter * canvasRef.current.width,
-            (detection.boundingBox.yCenter * canvasRef.current.height) - 10
+          const bbox = detection.boundingBox;
+          canvasCtx.strokeStyle = 'yellow';
+          canvasCtx.lineWidth = 4;
+          canvasCtx.strokeRect(
+            bbox.xCenter * canvasRef.current.width - (bbox.width * canvasRef.current.width) / 2,
+            bbox.yCenter * canvasRef.current.height - (bbox.height * canvasRef.current.height) / 2,
+            bbox.width * canvasRef.current.width,
+            bbox.height * canvasRef.current.height
           );
         });
-        captureAndSendImage();
+        setShowPopup(true); // Mostrar o "pop-up" quando um rosto for detectado
+      } else {
+        setShowPopup(false); // Ocultar o "pop-up" quando nenhum rosto for detectado
       }
       canvasCtx.restore();
     };
@@ -58,43 +57,18 @@ export const FaceDetectionComponent = () => {
     });
   }, []);
 
-  const captureAndSendImage = async () => {
-    if (webcamRef.current && webcamRef.current.video.readyState === 4) {
-      const video = webcamRef.current.video;
-      const canvas = document.createElement('canvas');
-      canvas.width = video.videoWidth;
-      canvas.height = video.videoHeight;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      canvas.toBlob(async (blob) => {
-        const formData = new FormData();
-        formData.append('image', blob, 'capture.jpg');
-        try {
-          const response = await axios.post('http://localhost:5000/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-          console.log('Image sent and response received:', response.data);
-        } catch (error) {
-          console.error('Error sending image:', error);
-        }
-      }, 'image/jpeg');
+  const captureFrame = async () => {
+    if (webcamRef.current && webcamRef.current.video.readyState === 4 && detector) {
+      try {
+        await detector.send({ image: webcamRef.current.video });
+      } catch (error) {
+        console.error('Error sending video frame to MediaPipe:', error);
+      }
     }
+    requestAnimationFrame(captureFrame);
   };
 
   useEffect(() => {
-    const captureFrame = async () => {
-      if (webcamRef.current && webcamRef.current.video.readyState === 4 && detector) {
-        try {
-          await detector.send({ image: webcamRef.current.video });
-        } catch (error) {
-          console.error('Error sending video frame to MediaPipe:', error);
-        }
-      }
-      requestAnimationFrame(captureFrame);
-    };
-
     captureFrame();
   }, [detector]);
 
@@ -115,6 +89,15 @@ export const FaceDetectionComponent = () => {
           height={480}
         />
       </div>
+      {showPopup && <PopupComponent />} {/* Renderizar o "pop-up" se showPopup for verdadeiro */}
+    </div>
+  );
+};
+
+const PopupComponent = () => {
+  return (
+    <div className={styles.popup}>
+      <p>Aluno presente!</p>
     </div>
   );
 };
