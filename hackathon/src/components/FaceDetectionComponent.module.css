@@ -1,29 +1,24 @@
 .container {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.webcam-container {
-  position: relative;
-  width: 640px; /* Largura da câmera */
-  height: 480px; /* Altura da câmera */
+  margin-top: 0;
 }
 
 .webcam {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 100%; /* Para garantir que a webcam não ultrapasse a largura do contêiner */
 }
 
 .canvas {
   position: absolute;
-  top: 0;
-  left: 0;
+}
+
+.titulo{
+  font-size: 3rem;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }

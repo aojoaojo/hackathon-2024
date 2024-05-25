@@ -61,22 +61,23 @@ export const FaceDetectionComponent = () => {
   }, [detector]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles['webcam-container']}>
+    <div>
+      <h1 className={styles.titulo}>Presença por Imagem</h1>
+      <div className={styles.container}>
 
-        <Webcam className={styles.webcam}
+        <Webcam
+          className={styles.webcam}
           audio={false}
           ref={webcamRef}
           screenshotFormat="image/jpeg"
-          style={{ position: 'absolute', top: 0, left: 0 }}
+        />
+        <canvas
+          className={styles.canvas}
+          ref={canvasRef}
+          width={640}
+          height={480}
         />
       </div>
-      <canvas className={styles.canvas}
-        ref={canvasRef}
-        style={{ position: 'absolute', top: 0, left: 0 }}
-        width={640}
-        height={480}
-      />
     </div>
   );
 };
