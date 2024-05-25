@@ -95,9 +95,18 @@ export const FaceDetectionComponent = () => {
 };
 
 const PopupComponent = () => {
+
+  var agora = new Date();
+
+  // Extrai a hora, minutos e segundos
+  var horas = agora.getHours();    // Retorna a hora (0-23)
+  var minutos = agora.getMinutes(); // Retorna os minutos (0-59)
+  var segundos = agora.getSeconds(); // Retorna os segundos (0-59)
+
   return (
     <div className={styles.popup}>
-      <p>Aluno presente!</p>
+      <p>Adriano presente!</p>
+      <p className={styles.hora}>{horas + ":" + minutos + ":" + segundos}</p>
     </div>
   );
 };

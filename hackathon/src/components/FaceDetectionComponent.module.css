@@ -24,22 +24,36 @@
 }
 
 .popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
-  top: 70%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  border: 0.1rem solid white;
-  z-index: 999;
-  background: green;
+  padding: 0.5rem;
+  border-radius: 50px;
+  border: 0.15rem solid rgb(0, 73, 0);
+  background: rgb(51, 151, 0);
+  width: 15rem;
 }
 
 .popup p {
   color: white;
+  font-weight: bolder;
+  margin: 0;
+  font-size: 18px;
+  justify-content: center;
+}
+
+.hora {
+  justify-self: center;
+  color: white;
   font-weight: bold;
   margin: 0;
   font-size: 18px;
+}
+
+.popup p + p {
+  margin-top: 0.5rem;
 }

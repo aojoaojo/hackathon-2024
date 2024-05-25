@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import FaceDetection from './pages/FaceDetection'; // Importe o componente FaceDetection aqui
@@ -7,19 +7,21 @@ import { VisaoAdm } from './pages/VisaoAdm';
 
 function App() {
 
-  const tarefas = ["Responder avaliação institucional",
+
+  const [tarefas, setTarefas] = useState(["Responder avaliação institucional",
     "Responder avaliação do professor",
     "Responder avaliação do curso",
     "Trabalho Jeremias",
-    "Fazer atividade"]
+    "Fazer atividade"]);
 
+  console.log(tarefas);
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/face-detection" element={<FaceDetection />} /> {/* Adicione a rota para o FaceDetectionComponent */}
         <Route path="/user" element={<VisaoUser tarefas={tarefas} />} />
-        <Route path="/adm" element={<VisaoAdm />} />
+        <Route path="/adm" element={<VisaoAdm tarefas={tarefas} setTarefas={setTarefas} />} />
         <Route path="*" element={<div>404</div>} />
 
       </Routes>
