@@ -6,12 +6,19 @@ import { VisaoUser } from './pages/VisaoUser';
 import { VisaoAdm } from './pages/VisaoAdm';
 
 function App() {
+
+  const tarefas = ["Responder avaliação institucional",
+    "Responder avaliação do professor",
+    "Responder avaliação do curso",
+    "Trabalho Jeremias",
+    "Fazer atividade"]
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/face-detection" element={<FaceDetection />} /> {/* Adicione a rota para o FaceDetectionComponent */}
-        <Route path="/user" element={<VisaoUser />} />
+        <Route path="/user" element={<VisaoUser tarefas={tarefas} />} />
         <Route path="/adm" element={<VisaoAdm />} />
         <Route path="*" element={<div>404</div>} />
 

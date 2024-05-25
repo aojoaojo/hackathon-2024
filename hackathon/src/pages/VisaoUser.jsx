@@ -3,13 +3,8 @@ import { Header } from '../components/Header';
 import { AvatarUser } from '../components/AvatarUser';
 
 
-export function VisaoUser() {
+export function VisaoUser({ tarefas }) {
 
-    const tarefas = ["Responder avaliação institucional",
-        "Responder avaliação do professor",
-        "Responder avaliação do curso",
-        "Trabalho Jeremias",
-        "Fazer atividade"]
 
     return (
         <div>
