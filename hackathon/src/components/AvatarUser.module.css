@@ -1,0 +1,53 @@
+.progress-loader {
+    margin: 1rem;
+    width: 25rem;
+    background: rgba(236, 236, 238, 0.253);
+    height: 2rem;
+    border-radius: 20px;
+    border: 0.1rem solid #102d4551;
+}
+
+.progress {
+    width: var(--progress-width, 0);
+    height: 2rem;
+    border-radius: 20px;
+    background: #102D45;
+    transition: 10 0.5s;
+    /* Adiciona uma transição suave para a mudança de largura */
+}
+
+/* Adicione a animação loading_44 somente se necessário */
+.progress.animation {
+    animation: loading_44 50s cubic-bezier(.4, 1.01, 1, 1) infinite;
+}
+
+.wrapperUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    color: black;
+    flex-direction: column;
+}
+
+.avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 0.2rem solid #102D45;
+}
+
+@keyframes loading_44 {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}

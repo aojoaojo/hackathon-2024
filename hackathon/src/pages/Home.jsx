@@ -5,7 +5,12 @@ export function Home() {
     return (
         <div>
             <Header />
-            <a href="/face-detection">Presença</a>
+            <p>
+                <a href="/face-detection">Presença</a>
+            </p>
+            <p>
+                <a href="/user">User</a>
+            </p>
         </div>
     )
 }

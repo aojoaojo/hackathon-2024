@@ -1,0 +1,30 @@
+.progress-loader {
+    margin: 1rem;
+    width: 25rem;
+    background: rgba(236, 236, 238, 0.253);
+    height: 2rem;
+    border-radius: 20px;
+    border: 0.1rem solid #102d4551;
+}
+
+.progress {
+    width: var(--progress-width, 0);
+    height: 2rem;
+    border-radius: 20px;
+    background: #102D45;
+    transition: 10 0.5s;
+    /* Adiciona uma transição suave para a mudança de largura */
+}
+
+li {
+    list-style: none;
+    margin: 0.5rem;
+    font-size: 1.25rem;
+    color: black;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    font-size: ;
+}
