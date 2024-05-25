@@ -5,29 +5,31 @@ import { Checkbox } from './Checkbox';
 
 export function ProgressBar({ tarefas, updateProgress }) {
     const [progress, setProgress] = useState(0);
+    const [lvl, setLvl] = useState(1);
 
     const handleButtonClick = (checked) => {
-        const newProgress = progress + 10; // Avançar 50% a cada clique
-        const newProgressLoss = progress - 10; // Avançar 50% a cada clique
-        console.log(checked);
-        if (!checked && newProgress <= 100) {
-            setProgress(newProgress);
-            updateProgress(newProgress); // Atualizar o progresso no componente pai
-        }
-        else if (checked && newProgress >= 0) {
-            setProgress(newProgressLoss);
-            updateProgress(newProgressLoss); // Atualizar o progresso no componente pai
-        }
-        if (newProgress >= 100) {
-            setProgress(0);
-            updateProgress(0);
+        let newProgress = checked ? progress - 30 : progress + 30; // Ajuste conforme o checkbox é marcado/desmarcado
+
+        // Certifique-se de que o progresso está dentro do intervalo permitido
+        if (newProgress < 0) newProgress = 0;
+        if (newProgress > 100) newProgress = 0;
+
+        setProgress(newProgress);
+        updateProgress(newProgress); // Atualizar o progresso no componente pai
+
+        // Incrementar ou decrementar o nível
+        if (newProgress === 0) {
+            setLvl(prevLvl => prevLvl + 1);
         }
     };
 
     return (
         <div>
-            <div className={styles['progress-loader']}>
-                <div className={styles.progress} style={{ width: `${progress}%` }}></div>
+            <div className={styles['progress-loader-container']}>
+                <div className={styles['progress-loader']}>
+                    <div className={styles.progress} style={{ width: `${progress}%` }}></div>
+                </div>
+                <span className={styles.level}>lvl {lvl}</span>
             </div>
             <h1>Tarefas</h1>
             <ul>

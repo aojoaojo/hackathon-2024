@@ -13,7 +13,7 @@ export function AvatarUser({ tarefas }) {
     return (
         <div className={styles.wrapperUser}>
             <img className={styles.avatar}
-                src="https://github.com/aojoaojo.png"
+                src="https://media.licdn.com/dms/image/D4D03AQHgildWODztTw/profile-displayphoto-shrink_800_800/0/1688097458161?e=1721865600&v=beta&t=AAskRelIsAV270nJNbuB140b09cLLPvGXC3yjTAoA_c"
                 alt="Avatar do usuário"
             />
 

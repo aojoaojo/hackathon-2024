@@ -1,10 +1,22 @@
-.progress-loader {
+.progress-loader-container {
+    display: flex;
+    align-items: center;
     margin: 1rem;
+}
+
+.progress-loader {
     width: 25rem;
     background: rgba(236, 236, 238, 0.253);
     height: 2rem;
     border-radius: 20px;
     border: 0.1rem solid #102d4551;
+    display: flex;
+    margin-right: 1rem; /* Espaço entre a barra de progresso e o nível */
+}
+
+.level {
+    font-weight: bold;
+    font-size: 1.3rem;
 }
 
 .progress {

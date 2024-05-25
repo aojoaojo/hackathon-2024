@@ -12,7 +12,9 @@ function App() {
     "Responder avaliação do professor",
     "Responder avaliação do curso",
     "Trabalho Jeremias",
-    "Fazer atividade"]);
+    "Hackathon",
+    "Trabalho de IA",
+  ]);
 
   console.log(tarefas);
   return (
